@@ -1,0 +1,36 @@
+FROM opensuse/tumbleweed:latest
+
+RUN zypper -n refresh && \
+    zypper -n dup && \
+    zypper -n install \
+        bsdtar \
+        build \
+        cpio \
+        curl \
+        findutils \
+        git \
+        git-lfs \
+        iputils \
+        jq \
+        less \
+        nano \
+        npm \
+        podman \
+        python3-PyYAML \
+        python3-behave \
+        python3-cryptography\
+        python3-pip \
+        python3-poetry-core \
+        python3-pytest \
+        python3-setuptools \
+        python3-urllib3 \
+        python3-uv \
+        ripgrep \
+        ruff \
+        sqlite3 \
+        tar \
+        vim \
+        wget \
+        which
+
+RUN npm install -g @google/gemini-cli

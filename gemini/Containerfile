@@ -1,6 +1,8 @@
 FROM opensuse/tumbleweed:latest
 
-RUN zypper -n refresh && \
+
+RUN zypper addrepo --repo http://download.opensuse.org/repositories/OBS:/Server:/Unstable/openSUSE_Factory/OBS:Server:Unstable.repo && \
+    zypper -n --gpg-auto-import-keys refresh && \
     zypper -n dup && \
     zypper -n install \
         bsdtar \
@@ -10,11 +12,14 @@ RUN zypper -n refresh && \
         findutils \
         git \
         git-lfs \
+        go \
         iputils \
         jq \
         less \
+        make \
         nano \
         npm \
+        osc \
         podman \
         python3-PyYAML \
         python3-behave \
@@ -29,6 +34,7 @@ RUN zypper -n refresh && \
         ruff \
         sqlite3 \
         tar \
+        tree \
         vim \
         wget \
         which

@@ -9,6 +9,7 @@ RUN zypper addrepo --repo http://download.opensuse.org/repositories/OBS:/Server:
         build \
         cpio \
         curl \
+        file \
         findutils \
         git \
         git-lfs \
@@ -16,16 +17,20 @@ RUN zypper addrepo --repo http://download.opensuse.org/repositories/OBS:/Server:
         iputils \
         jq \
         less \
+        lsof \
         make \
         nano \
         npm \
         osc \
         podman \
+        postgresql-server \
+        python3-Django6 \
         python3-PyYAML \
         python3-behave \
         python3-cryptography\
         python3-pip \
         python3-poetry-core \
+        python3-psycopg \
         python3-pytest \
         python3-setuptools \
         python3-urllib3 \
@@ -39,4 +44,5 @@ RUN zypper addrepo --repo http://download.opensuse.org/repositories/OBS:/Server:
         wget \
         which
 
-RUN npm install -g @google/gemini-cli
+RUN pip3 install --break-system-packages django-bolt && \
+    npm install -g @google/gemini-cli --ignore-scripts

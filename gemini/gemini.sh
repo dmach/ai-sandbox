@@ -36,6 +36,15 @@ fi
 GIT_AUTHOR_NAME="$(git config user.name)"
 GIT_AUTHOR_EMAIL="$(git config user.email)"
 
+# resolve the host-side system.md target so the container reads a real file path
+SYSTEM_MD_LINK="${HOME}/.gemini/system.md"
+SYSTEM_MD_REAL="$(readlink -f "${SYSTEM_MD_LINK}")"
+
+if [ -z "${SYSTEM_MD_REAL}" ] || [ ! -f "${SYSTEM_MD_REAL}" ]; then
+    echo "Missing or invalid ${SYSTEM_MD_LINK}. Run install.sh to recreate it."
+    exit 1
+fi
+
 
 # capability 'dac_override' is required by zypper/rpm
 podman run \
@@ -56,6 +65,7 @@ podman run \
     --tmpfs /tmp \
     --dns=8.8.8.8 \
     -v "${HOME}/.gemini:/root/.gemini:rw,z" \
+    -v "${SYSTEM_MD_REAL}:/root/.gemini/system.md:ro,z" \
     -v "${PWD}:/workspace:rw,z" \
     -w "/workspace" \
     gemini \

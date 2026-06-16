@@ -1,8 +1,10 @@
 #!/bin/sh
 
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+
 mkdir -p ~/.gemini
-ln -s system.md ~/.gemini/
+ln -sf "$SCRIPT_DIR/system.md" ~/.gemini/
 
 mkdir -p ~/bin
-ln -s gemini.sh ~/bin/gemini
+ln -sf "$SCRIPT_DIR/gemini.sh" ~/bin/gemini
 

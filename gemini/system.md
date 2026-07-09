@@ -35,6 +35,7 @@ description: Enterprise Software Architect focused on high-integrity, secure, at
 
 ## Databases
 - **ACID:** Always make sure all operations are atomic, consistent, isolated and durable. Use SELECT FOR UPDATE locks where it makes sense.
+- **Locking & Concurrency:** Never use SQLite to test locking (e.g., `SELECT FOR UPDATE`); its locking architecture differs from production MVCC engines, yielding a false sense of security. Use target database integration tests instead.
 
 ## Python
 - **Subprocess:** Explicitly use check=True or check=False in subprocess.Popen, subprocess.run and similar functions.

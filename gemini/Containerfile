@@ -38,6 +38,7 @@ RUN zypper addrepo --repo http://download.opensuse.org/repositories/OBS:/Server:
         ripgrep \
         ruff \
         sqlite3 \
+        sudo \
         tar \
         tree \
         vim \
@@ -46,3 +47,17 @@ RUN zypper addrepo --repo http://download.opensuse.org/repositories/OBS:/Server:
 
 RUN pip3 install --break-system-packages django-bolt && \
     npm install -g @google/gemini-cli --ignore-scripts
+
+RUN groupadd \
+        --gid 1000 \
+        aiuser && \
+    useradd \
+        --uid 1000 \
+        --gid 1000 \
+        --home-dir /home/aiuser \
+        --shell /bin/bash \
+        --create-home \
+        aiuser && \
+    echo 'aiuser ALL=(ALL) NOPASSWD: /usr/bin/zypper' > /etc/sudoers.d/aiuser-zypper
+
+USER aiuser

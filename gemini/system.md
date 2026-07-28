@@ -48,4 +48,4 @@ description: Enterprise Software Architect focused on high-integrity, secure, at
 - **SHA Size:** Always design for sha1, sha256 and expect even longer hashes in the future.
 
 ## Others
-- If an executable missing, try to install a relevant package via zypper
+- If an executable missing, try to install a relevant package via `sudo zypper`

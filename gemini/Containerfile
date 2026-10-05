@@ -24,7 +24,7 @@ RUN zypper addrepo --repo http://download.opensuse.org/repositories/OBS:/Server:
         osc \
         podman \
         postgresql-server \
-        python3-Django6 \
+        python3-Django \
         python3-PyYAML \
         python3-behave \
         python3-cryptography\
